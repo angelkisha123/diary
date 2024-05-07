@@ -1,0 +1,76 @@
+{% extends 'accounts/maintemp.html' %}
+
+{% block title %}
+All Members
+{% endblock title %}
+
+{% block content %}
+<div class="container my-20">
+    <div class="row">
+        <div class="col-md-12">
+            {% for msg in messages %}
+            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                <span class="font-medium">{{msg}}</span> 
+              </div>
+            {% endfor %}
+
+<form action="" method = 'POST'>
+    {% csrf_token %}
+    <div class="w-screen flex align-center justify-center">
+    <div class="mx-40 w-screen overflow-x-auto shadow-md sm:rounded-lg flex items-center justify-center">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">ID</th>
+                <th scope="col" class="px-6 py-3">Name</th>
+                <th scope="col" class="px-6 py-3">age</th>
+                <th scope="col" class="px-6 py-3">phone</th>
+                <th scope="col" class="px-6 py-3">Email</th>
+                <th scope="col" class="px-6 py-3">Image</th>
+                <th scope="col" class="px-6 py-3">Action</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+{% for data in form%}
+<tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+    <td class="px-6 py-4">{{ data.id }}</td>
+    <td class="px-6 py-4">{{ data.name }}</td>
+    <td class="px-6 py-4">{{ data.age }}</td>
+    <td class="px-6 py-4">{{ data.phone }}</td>
+    <td class="px-6 py-4">{{ data.email }}</td>
+    {% if data.image %}
+    <td>
+        <div>
+        <img src="{{ data.image.url }}" alt="" class="image object-contain w-[60%] h-40">
+        </div>
+    </td>
+    {% else %}
+    <td>
+        <img src="" alt="" class="image">
+    </td>
+    {% endif %}
+    <td class="py-4">
+        <a href="{% url 'edit-member' data.id %}" class="text-white text-xs bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            Edit
+        </a>
+        <a href="{% url 'delete-member' data.id %}" class="focus:outline-none text-white text-xs bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+            Delete
+        </a>
+        
+    </td>
+</tr>
+
+{% endfor %}
+        </tbody>
+    </table>
+</div>
+    </div>
+</form>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}
