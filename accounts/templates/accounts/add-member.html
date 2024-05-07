@@ -45,6 +45,7 @@
             name="name"
             class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-pink-200 focus:border-pink-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value=""
+            placeholder="Enter name"
           />
         </div>
 
@@ -76,13 +77,15 @@
             </svg>
           </span>
           <input
-            Required
-            type="text"
+            required
+            type="number"
             id="age"
             name="age"
-            class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            value=""
-          />
+            class="rounded-none rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            min="10"
+            max="99"
+            placeholder="Enter age"
+          >
         </div>
         <label
           for="phone"
@@ -113,11 +116,12 @@
           </span>
           <input
             Required
-            type="text"
+            type="number"
             id="phone"
             name="phone"
             class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value=""
+            placeholder="Enter phone number"
           />
         </div>
         <label
@@ -148,11 +152,12 @@
           </span>
           <input
             Required
-            type="text"
+            type="email"
             id="email"
             name="email"
             class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value=""
+            placeholder="Enter email"
           />
         </div>
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Image</label>
