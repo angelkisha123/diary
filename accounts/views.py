@@ -1,16 +1,12 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from .forms import MemberForm, ChapterForm
-from .models import Member
+from .models import Member, Chapter
 from django.contrib import messages
 import os
 
 def modal(request):
     return render(request, 'components/modal.html')
-def chapter(request):
-    if request.method == "POST":
-        return redirect('add-member')
-    return render(request, 'accounts/chapter.html')
 
 def homepage(request):
     return render(request, 'accounts/homepage.html')
@@ -24,8 +20,8 @@ def addMember(request):
             messages.success(request, "Data inserted successfully")
         else:
             messages.error(request, "Data was not inserted. Please correct the errors below.")
-    context = {'form': form}
-    return render(request, 'accounts/add-member.html', context)
+    # context = {'form': form}
+    return render(request, 'accounts/add-member.html')
 
 def viewMember(request):
     form = Member.objects.all()
@@ -60,13 +56,30 @@ def deleteMember(request,pk):
 def addChapter(request):
     form = ChapterForm()
     if request.method == "POST":
-        form = ChapterForm(request.FORM)
+        form = ChapterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success("Added Chapter Successfully")
+            messages.success(request,"Added Chapter Successfully")
+            return redirect('/chapter')
         else:
-            messages.error("Error")
+            messages.error(request,"Error")
+    # context = {"form": form}
+    # return render(request, "accounts/chapter.html")
 
-    context = {"form": form}
+def viewChapter(request):
+    form = Chapter.objects.all()
+    print("form",form)
+    context = {'form': form}
     return render(request, "accounts/chapter.html", context)
 
+def editChapter(request, pk):
+    form = Chapter.objects.get(id=pk)
+    if request.method == "POST":
+        form.title=request.POST.get("title")
+        form.description=request.POST.get("description")
+        form.date=request.POST.get("date")
+        form.save()
+        messages.success(request,"Edited Successfully")
+        context = {'form': form}
+
+        return render(request, "accounts/chapter.html", context)

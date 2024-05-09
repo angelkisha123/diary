@@ -5,13 +5,13 @@ Chapters
 
 {% block content %}
 <div class=" flex flex-wrap w-full px-5 h-screen  gap-4 pt-5 flex-row justify-center" >
-    <div class="w-auto bg-purple-200 h-auto my-5 rounded-xl" style="width:45%">
+    <div class="w-auto bg-purple-200 h-auto my-5 rounded-xl max-h-[87%]" style="width:45%">
         <div class="bg-purple-400 rounded-t-lg py-3 px-3 flex items-center border-b-4 border-white">
             <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd" d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z" clip-rule="evenodd"/>
-              </svg>
-                <h2 class=" text-white pl-2 font-bold">Chapters</h2>
-               
+            </svg>
+                <h2 class=" text-white pl-2 font-bold">Chapters
+                </h2>
         </div>
         <div class="p-2 flex justify-end">
       
@@ -22,15 +22,34 @@ Chapters
                 Add Chapter
             </div>
 
-            {% include "components/modal.html" %}
-            
-
-
-    </div>
+            {% include "components/modal.html"  %}
         </div>
-    <div class="w-auto bg-indigo-200 my-5 rounded-xl" style="width:45%">
-       
+
+
+
+        <form action="" method = 'POST'>
+            {% csrf_token %}
+        <div class="overflow-hidden overflow-y-visible max-h-[70%]">
+        {% for data in form reversed%}
+    
+        <div class="bg-indigo-400  w-100 mx-10 h-auto rounded-xl p-2 mb-5 transition duration-200 ease-in-out hover:shadow-lg hover:bg-indigo-500">
+        <div class="flex justify-between ">
+            <h2 class="uppercase text-white font-bold pb-2">{{data.title}}</h2>
+            <p class="text-white">{{data.date}}</p>
+        </div>
+        <p class="text-white overflow-ellipsis line-clamp-2">{{data.description}}</p>
+        
+        
     </div>
+        {% endfor%}
+        </div>
+        </form>
+
+
+    </div>
+    {% comment %} <div class="w-auto bg-indigo-200 my-5 rounded-xl" style="width:45%">
+        sfsdfgvsd
+     </div> {% endcomment %}
 </div>
 {%endblock content%}
 

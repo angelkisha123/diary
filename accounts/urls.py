@@ -9,8 +9,10 @@ urlpatterns = [
     path('view-member/',views.viewMember, name='view-member'),
     path('edit-member/<str:pk>/', views.editMember, name='edit-member'),
     path('delete-member/<str:pk>/', views.deleteMember, name='delete-member'),
-    path('chapter',views.chapter, name='chapter'),
-    path('modal',views.modal, name="modal")
+    path('add-chapter',views.addChapter, name='addChapter'),
+    path('chapter',views.viewChapter,name='viewChapter' ),
+    path('modal',views.modal, name="modal"),
+    path('edit-chapter', views.editChapter, name="editChapter"),
 ]
 
 
