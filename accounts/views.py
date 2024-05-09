@@ -1,9 +1,16 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
-from .forms import MemberForm
+from .forms import MemberForm, ChapterForm
 from .models import Member
 from django.contrib import messages
 import os
+
+def modal(request):
+    return render(request, 'components/modal.html')
+def chapter(request):
+    if request.method == "POST":
+        return redirect('add-member')
+    return render(request, 'accounts/chapter.html')
 
 def homepage(request):
     return render(request, 'accounts/homepage.html')
@@ -12,7 +19,6 @@ def addMember(request):
     form = MemberForm()
     if request.method == 'POST':
         form = MemberForm(request.POST, request.FILES)
-        print("form:", form)
         if form.is_valid():
             form.save()
             messages.success(request, "Data inserted successfully")
@@ -50,4 +56,17 @@ def deleteMember(request,pk):
     member_data.delete()
     messages.success(request,"Product Deleted Successfuly")
     return redirect('/view-member')
+
+def addChapter(request):
+    form = ChapterForm()
+    if request.method == "POST":
+        form = ChapterForm(request.FORM)
+        if form.is_valid():
+            form.save()
+            messages.success("Added Chapter Successfully")
+        else:
+            messages.error("Error")
+
+    context = {"form": form}
+    return render(request, "accounts/chapter.html", context)
 
